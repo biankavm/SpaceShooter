@@ -115,7 +115,7 @@ _Página não existente (404)_
 - **TypeScript** para tipagem estática
 - **SASS** para compilação de estilos
 
-## 🚀 Contribuindo
+## Contribuindo
 
 Contribuições são sempre bem-vindas! Se você quiser melhorar este projeto:
 
@@ -125,14 +125,14 @@ Contribuições são sempre bem-vindas! Se você quiser melhorar este projeto:
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
-## 📞 Contato
+## Contato Comigo
 
 - **GitHub**: [@biankavm](https://github.com/biankavm)
-- **LinkedIn**: [Bianca Viana](https://www.linkedin.com/in/biankavm/)
+- **LinkedIn**: [Bianca Vasconcelos](https://www.linkedin.com/in/biankavm/)
 
-## 🎮 Jogue e Divirta-se!
+## Jogue e Divirta-se!
 
-Agora é hora de embarcar nesta aventura espacial! 🛸
+Agora é hora de embarcar nesta aventura espacial!
 
 ```bash
 npm start

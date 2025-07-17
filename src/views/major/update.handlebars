@@ -1,0 +1,38 @@
+{{> page-header 
+  icon="bi bi-mortarboard" 
+  title="Atualização de Curso" 
+  actionIcon=(showArrowIcon '/majors/index')
+}}
+
+<form action='/majors/update/{{major.id}}' method='post'>
+  {{> form-field 
+    type="text"
+    name="code"
+    id="code"
+    label="Código do Curso"
+    placeholder="IE08"
+    maxlength="4"
+    value=major.code
+  }}
+
+  {{> form-field 
+    type="text"
+    name="name"
+    id="name"
+    label="Nome do Curso"
+    placeholder="Ciência da Computação"
+    value=major.name
+  }}
+
+  {{> form-field 
+    type="textarea"
+    name="description"
+    id="description"
+    label="Descrição"
+    placeholder="Informe a descrição do curso"
+    rows="3"
+    value=major.description
+  }}
+
+  <button type='submit' class='btn btn-primary button'>Atualizar Curso</button>
+</form>

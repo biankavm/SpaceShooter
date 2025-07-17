@@ -1,0 +1,6 @@
+.env
+.tool-versions
+logs/logs.log
+node_modules
+
+/src/generated/prisma

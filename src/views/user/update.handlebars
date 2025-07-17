@@ -1,0 +1,37 @@
+{{> page-header 
+  icon="bi bi-person-circle" 
+  title="Atualização de Usuário" 
+  actionIcon=(showArrowIcon '/')
+}}
+
+<form action='/users/update/{{user.id}}' method='post'>
+  {{> form-field 
+    type="text"
+    name="name"
+    id="name"
+    label="Nome"
+    placeholder="Seu nome"
+    value=user.name
+  }}
+
+  {{> form-field 
+    type="text"
+    name="email"
+    id="email"
+    label="Email"
+    placeholder="exemplo@email.com"
+    value=user.email
+  }}
+
+  {{> form-field 
+    type="select"
+    name="majorId"
+    id="majorId"
+    label="Curso"
+    placeholder="Selecione um curso"
+    options=majors
+    selectedValue=user.majorId
+  }}
+
+  <button type='submit' class='btn btn-primary button'>Atualizar Usuário</button>
+</form>

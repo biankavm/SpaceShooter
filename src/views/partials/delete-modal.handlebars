@@ -1,0 +1,41 @@
+{{#each items}}
+  <div
+    class='modal fade'
+    id='deleteModal{{id}}'
+    tabindex='-1'
+    role='dialog'
+    aria-labelledby='deleteModalLabel{{id}}'
+    aria-hidden='true'
+  >
+    <div class='modal-dialog' role='document'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <h5 class='modal-title' id='deleteModalLabel{{id}}'>Confirmar Exclusão</h5>
+          <button
+            type='button'
+            class='btn-close'
+            data-bs-dismiss='modal'
+            aria-label='Close'
+          ></button>
+        </div>
+        <div class='modal-body'>
+          Tem certeza que deseja excluir {{../itemType}}
+          <strong>{{name}}</strong>?
+        </div>
+        <div class='modal-footer'>
+          <button
+            type='button'
+            class='btn btn-secondary'
+            data-bs-dismiss='modal'
+          >Cancelar</button>
+
+          <button
+            type='button'
+            class='btn btn-danger'
+            onclick="{{../deleteFunction}}('{{id}}')"
+          >Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}

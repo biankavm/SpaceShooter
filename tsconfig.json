@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2016", // define qual versão do javascript o typescript vai gerar
+
+    "module": "commonjs", // define qual o tipo de módulo o typescript vai gerar (commonjs tem require() e module.exports)
+    "rootDir": "src", // define o diretório raiz dos arquivos fonte TypeScript
+    "outDir": "build", // define onde os arquivos javascript compilados serão salvos
+    "esModuleInterop": true, // permite importar módulos CommonJS como se fossem ES Modules (ex: import { readFile } from 'fs')
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true, // ativa todas as verificações de tipo do typescript
+    "skipLibCheck": true // desabilita a verificação de tipos de arquivos .d.ts
+  },
+  "include": ["src/**/*.ts"], // arquivos inclusos na compilação: todos em src e todos os subdiretórios, todos .ts
+  "exclude": ["node_modules", "build"] // arquivos excluidos da compilação: todos dentro de node_modules e build
+}

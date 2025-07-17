@@ -1,0 +1,43 @@
+{{> page-header 
+  icon="bi bi-mortarboard" 
+  title="Listagem de Cursos" 
+  actionIcon=(showAddIcon '/majors/create')
+}}
+
+{{#if majors.length}}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope='col'>Código</th>
+        <th scope='col'>Nome</th>
+        <th scope='col' class='text-end'> Opções </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each majors}}
+        <tr>
+          <td>{{code}}</td>
+          <td>{{name}}</td>
+          <td class='text-end'>
+            <a href='/majors/read/{{id}}'><i class='bi bi-eye icons'></i></a>
+            <a href='/majors/update/{{id}}'><i class='bi bi-pencil icons'></i></a>
+            <a
+              href='#'
+              type='button'
+              data-bs-toggle='modal'
+              data-bs-target='#deleteModal{{id}}'
+            ><i class='bi bi-trash icons'></i></a>
+          </td>
+        </tr>
+      {{/each}}
+
+    </tbody>
+  </table>
+
+  {{> delete-modal items=majors itemType="o curso" deleteFunction="deleteMajor"}}
+  
+{{else}}
+  <div class="alert alert-warning" role="alert">
+    Nenhum curso cadastrado.
+  </div>
+{{/if}}

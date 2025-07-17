@@ -1,0 +1,43 @@
+<div class='mb-3'>
+  <label for='{{id}}' class='form-label'>{{label}}</label>
+  {{#if (isEqual type "textarea")}}
+    <textarea
+      name='{{name}}'
+      class='form-control'
+      id='{{id}}'
+      rows='{{rows}}'
+      placeholder='{{placeholder}}'
+    >{{value}}</textarea>
+  {{else if (isEqual type "select")}}
+    <select name='{{name}}' class='form-select'>
+      <option value=''>{{placeholder}}</option>
+      {{#each options}}
+        <option value='{{id}}' {{#if (isEqual id ../selectedValue)}}selected{{/if}}>{{name}}</option>
+      {{/each}}
+    </select>
+
+  {{else if (isEqual type "password")}}
+    <div class="input-group">
+      <input 
+        type="password" 
+        class="form-control" 
+        id="{{id}}"
+        name="{{name}}"
+        placeholder="{{placeholder}}"
+      >
+      <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+        <i class="bi bi-eye-slash" id="toggle-password-icon"></i>
+      </button>
+    </div>
+  {{else}}
+    <input
+      type='{{type}}'
+      name='{{name}}'
+      class='form-control'
+      id='{{id}}'
+      placeholder='{{placeholder}}'
+      {{#if maxlength}}maxlength='{{maxlength}}'{{/if}}
+      {{#if value}}value='{{value}}'{{/if}}
+    />
+  {{/if}}
+</div> 

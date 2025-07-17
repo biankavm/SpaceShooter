@@ -1,0 +1,30 @@
+{{> page-header 
+  icon="bi bi-person-circle" 
+  title="Fazer Login" 
+  actionIcon=(showArrowIcon '/users/index')
+}}
+
+{{#if error}}
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+{{/if}}
+
+<form action='/account/login' method='post'>
+  {{> form-field 
+    type="text"
+    name="email"
+    id="email"
+    label="Email"
+    placeholder="exemplo@email.com"
+  }}
+
+  {{> form-field 
+    type="password"
+    name="password"
+    id="password"
+    label="Senha"
+  }}
+
+  <button type='submit' class='btn btn-primary button'>Entrar</button>
+</form>

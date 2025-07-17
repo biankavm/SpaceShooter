@@ -1,0 +1,44 @@
+{{> page-header 
+  icon="bi bi-person-circle" 
+  title="Listagem de Usuários" 
+  actionIcon=(showAddIcon '/users/create')
+}}
+
+{{#if users.length}}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope='col'>Nome</th>
+        <th scope='col'>Email</th>
+        <th scope='col'>Curso</th>
+        <th scope='col' class='text-end'> Opções </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{email}}</td>
+          <td>{{major.name}}</td>
+          <td class='text-end'>
+            <a href='/users/read/{{id}}'><i class='bi bi-eye icons'></i></a>
+            <a href='/users/update/{{id}}'><i class='bi bi-pencil icons'></i></a>
+            <a
+              href='#'
+              type='button'
+              data-bs-toggle='modal'
+              data-bs-target='#deleteModal{{id}}'
+            ><i class='bi bi-trash icons'></i></a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  {{> delete-modal items=users itemType="o usuário" deleteFunction="deleteUser"}}
+  
+{{else}}
+  <div class="alert alert-warning" role="alert">
+    Nenhum usuário cadastrado.
+  </div>
+{{/if}}

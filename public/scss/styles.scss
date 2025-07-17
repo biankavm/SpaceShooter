@@ -1,0 +1,142 @@
+$color: #5e3f6b;
+$color-secondary: #8f64a1;
+$color-navbar: #4a2c5a;
+
+#header {
+  color: $color;
+}
+
+.icons {
+  color: $color-secondary;
+  text-decoration: none;
+}
+
+.button {
+  background-color: $color-secondary !important;
+  color: white;
+  border: none !important;
+  &:hover {
+    background-color: $color !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color !important;
+}
+
+.link {
+  color: $color-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color;
+  }
+}
+
+.navbar-custom {
+  background-color: #4a2c5a !important;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#space {
+  background-image: url('../assets/png/Background/starBackground.png');
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 auto;
+  width: 100vw;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+#player {
+  position: absolute;
+}
+
+#statsContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 20px;
+  height: 27px;
+  position: relative;
+  z-index: 10;
+}
+
+#life {
+  margin-right: 5px;
+  height: 20px;
+}
+
+#pontuation {
+  font-weight: bold;
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.enemy {
+  position: absolute;
+  z-index: 1;
+}
+
+#gameOverScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 20, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#gameOverScreen .game-over-message {
+  color: #5e3f6b;
+  font-size: 72px;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 2px 2px #000;
+  margin: 0;
+}
+
+#gameOverScreen .restart-button {
+  margin-top: 24px;
+  padding: 12px 28px;
+  font-size: 24px;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+#gameOverScreen .restart-button:hover {
+  background: #fff;
+  color: #222;
+}

@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Major {
+  id          String   @id @default(uuid()) @db.Char(40)
+  name        String   @unique @db.VarChar(100)
+  code        String   @unique @db.Char(40)
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  User        User[]
+
+  @@map("majors")
+}
+
+model User {
+  id          String        @id @default(uuid()) @db.Char(40)
+  email       String        @unique @db.VarChar(100)
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  majorId     String        @db.Char(40)
+  name        String        @db.VarChar(100)
+  password    String        @db.Char(60)
+  GameSession GameSession[]
+  major       Major         @relation(fields: [majorId], references: [id]) // uma coluna virtual para relacionar o usuário com o major
+
+  @@index([majorId], map: "users_majorId_fkey")
+  @@map("users")
+}
+
+model GameSession {
+  id        String   @id @default(uuid()) @db.Char(40)
+  userId    String   @map("user_id") @db.Char(40)
+  score     Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "game_sessions_user_id_fkey")
+  @@map("game_sessions")
+}

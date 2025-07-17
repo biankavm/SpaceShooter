@@ -1,0 +1,67 @@
+<div class='container my-5'>
+  <div class='row justify-content-center'>
+    <div class='col-lg-10'>
+      <div class='card shadow-lg border-0 rounded-4'>
+        <div class='card-body p-5'>
+          <h2 class='mb-4'>{{mainText}}</h2>
+          <p class='card-text'>{{helperText}}</p>
+          <p class='card-text'>{{aboutMe}}</p>
+
+          <div class='card bg-light border-0 rounded-3 my-4'>
+            <div class='card-body'>
+              <h3>Sobre o Space Shooter</h3>
+              <p class='card-text'>
+                O Space Shooter é um jogo clássico de nave espacial, onde o
+                objetivo é sobreviver o maior tempo possível, destruindo
+                inimigos e desviando de obstáculos no espaço.
+              </p>
+
+              <p class='card-text credit'>
+                <strong>Créditos dos assets:</strong>
+                Kenney.nl (<a
+                  href='https://opengameart.org/content/space-shooter-art'
+                  target='_blank'
+                  class='icons'
+                >Space Shooter Art</a>)
+              </p>
+            </div>
+          </div>
+
+          <div class='row justify-content-center g-4 mt-4'>
+            <div class='col-md-6 d-flex justify-content-center'>
+              <img
+                src='/img/preview.jpg'
+                alt='Naves, escudos e obstáculos do jogo space shooter'
+                class='img-fluid rounded shadow-sm zoom-image'
+                style='max-width: 320px; transition: transform 0.3s ease-in-out; cursor: pointer;'
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+              />
+            </div>
+            <div class='col-md-6 d-flex justify-content-center'>
+              <img
+                src='/img/sample.png'
+                alt='Jogo ativo, com nave disparando tiros que colidem com os inimigos que estão se aproximando.'
+                class='img-fluid rounded shadow-sm zoom-image'
+                style='max-width: 320px; transition: transform 0.3s ease-in-out; cursor: pointer;'
+                onmouseover="this.style.transform='scale(1.1)'"
+                onmouseout="this.style.transform='scale(1)'"
+              />
+            </div>
+          </div>
+          <div class='row justify-content-center align-items-center g-4 mt-4'>
+            <div class='col text-center'>
+              {{#if logged}}
+                <a href='/' class='btn btn-primary button'>Jogar Agora</a>
+              {{else}}
+                <a href='/account/login' class='btn btn-primary button'>Faça
+                  Login para Jogar</a>
+              {{/if}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

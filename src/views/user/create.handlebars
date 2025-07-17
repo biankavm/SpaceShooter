@@ -1,0 +1,62 @@
+{{> page-header 
+  icon="bi bi-person-circle" 
+  title="Criar Nova Conta" 
+  actionIcon=(showArrowIcon '/users/index')
+}}
+
+{{#if error}}
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+{{/if}}
+
+<form action='/users/create' method='post'>
+  {{> form-field 
+    type="text"
+    name="name"
+    id="name"
+    label="Nome"
+    placeholder="Seu nome"
+  }}
+
+  {{> form-field 
+    type="text"
+    name="email"
+    id="email"
+    label="Email"
+    placeholder="exemplo@email.com"
+  }}
+
+  {{> form-field 
+    type="password"
+    name="password"
+    id="password"
+    label="Senha"
+  }}
+
+  {{> form-field 
+    type="password"
+    name="confirmPassword"
+    id="confirmPassword"
+    label="Confirmar Senha"
+  }}
+
+
+  {{> form-field 
+    type="select"
+    name="majorId"
+    id="majorId"
+    label="Curso"
+    placeholder="Selecione um curso"
+    options=majors
+  }}
+
+  <div class="d-flex flex-column">
+    <a href="/majors/create" class="mb-3 link">
+      Seu curso não está listado? Clique aqui para criar seu curso.
+    </a>
+  </div>
+  
+  <button type='submit' class='btn btn-primary button'>Criar Conta</button>
+
+</form>

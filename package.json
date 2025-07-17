@@ -1,0 +1,58 @@
+{
+  "name": "pw-work-part-1",
+  "version": "1.0.0",
+  "description": "Project developed for part 1 of the Web Programming Work.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "deploy": "npx tsc",
+    "start:prod": "node build/index.js",
+    "sass": "sass public/scss/main.scss public/css/main.css --watch",
+    "prettier": "npx prettier --write src/**/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biankavm/web-programming.git"
+  },
+  "keywords": [
+    "work",
+    "pw",
+    "typescript",
+    "express",
+    "javascript",
+    "development"
+  ],
+  "author": "Bianka Vasconcelos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/biankavm/web-programming/issues"
+  },
+  "homepage": "https://github.com/biankavm/web-programming#readme",
+  "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "@types/uuid": "^10.0.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
+    "envalid": "^8.0.0",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "lorem-ipsum": "^2.0.8",
+    "morgan": "^1.10.0",
+    "sass": "^1.89.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.0.3",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

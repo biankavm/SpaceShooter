@@ -1,0 +1,34 @@
+{{> page-header 
+  icon="bi bi-trophy" 
+  title="Melhores Jogadores" 
+  actionIcon=(showArrowIcon '/')
+}}
+
+
+{{#if topScoresByUsers}}
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope='col'>Posição</th>
+        <th scope='col'>Pontuação</th>
+        <th scope='col'>Nome</th>
+        <th scope='col'>Curso</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each topScoresByUsers}}
+        <tr>
+          <td>{{add @index 1}}º</td>
+          <td>{{score}}</td>
+          <td>{{user.name}}</td>
+          <td>{{major.name}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+{{else}}
+  <div class="alert alert-warning" role="alert">
+    Sem usuários nos top 10.
+  </div>
+{{/if}}

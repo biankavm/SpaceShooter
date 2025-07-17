@@ -128,7 +128,7 @@ Contribuições são sempre bem-vindas! Se você quiser melhorar este projeto:
 ## Contato Comigo
 
 - **GitHub**: [@biankavm](https://github.com/biankavm)
-- **LinkedIn**: [Bianka Vasconcelos](https://www.linkedin.com/in/biankavm/)
+- **LinkedIn**: [Bianka Vasconcelos](https://www.linkedin.com/in/biankavmaciel/)
 
 ## Jogue e Divirta-se!
 

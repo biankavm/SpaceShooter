@@ -4,40 +4,18 @@ Olá! Este é um projeto que desenvolvi durante a graduação para a disciplina 
 
 O trabalho consiste na elaboração de um sistema com o Jogo Space Shooter, permitindo cadastro de usuários, cursos, e amostragem do ranking com os melhores colocados no Jogo!
 
-## Páginas da Aplicação
-
-![Lista de Cursos](screenshots/pages/login.png)
-_Página de Login_
-
-![Lista de Cursos](screenshots/pages/unlogged/createAccount.png)
-_Página de Criação de Conta_
-
-![Lista de Cursos](screenshots/pages/logged/home.png)
-_Página Inicial para Usuários Logados_
-
-![Lista de Cursos](screenshots/pages/logged/accountDetails.png)
-_Página de Detalhes da Conta_
-
-![Lista de Cursos](screenshots/pages/logged/accountUpdate.png)
-_Página de Atualizar Conta_
-
-![Lista de Cursos](screenshots/pages/logged/changePassword.png)
-_Página de Alterar Senha_
-
-![Lista de Cursos](screenshots/pages/about.png)
-_Página de Sobre_
-
-![Lista de Cursos](screenshots/pages/unlogged/home.png)
-_Página Inicial para Usuários Deslogados - Jogo fica inacessível_
-
-![Lista de Cursos](screenshots/pages/404.png)
-_Página não existente (404)_
-
 ## Como Executar
 
-### Passo a passo
+### Pré-requisitos
 
-1. **Baixe o projeto**
+- **Node.js** (versão 16 ou superior)
+- **Docker** e **Docker Compose** instalados
+- **Git**
+- **Make** (geralmente já vem instalado no Linux/macOS)
+
+### Setup Rápido
+
+1. **Clone o repositório**
 
    ```bash
    git clone https://github.com/biankavm/web-programming.git
@@ -47,45 +25,39 @@ _Página não existente (404)_
 2. **Instale as dependências**
 
    ```bash
-   npm install
+   make setup
    ```
 
-3. **Configure o arquivo de ambiente**
+3. **Configure as variáveis de ambiente**
+   Edite o arquivo `.env` que foi criado pelo make setup, deixando-o de forma similar a do exemplo abaixo:
+
+```env
+PORT=7799
+NODE_ENV=development # também pode ser production
+SALT_ROUNDS=10
+SESSION_SECRET=sua_chave_secreta_aqui # pode ser uma sequência aleatória de letras e números
+DATABASE_ROOT_PASSWORD=senhasegura
+```
+
+3. **Inicie o jogo**
 
    ```bash
-   cp .env.example .env
+   make start
    ```
 
-   Agora edite o arquivo `.env` com suas informações:
+4. **Acesse a aplicação**
+   - **Jogo**: `http://localhost:PORT`
+   - **phpMyAdmin**: `http://localhost:8081`
 
-   ```env
-   DATABASE_URL="mysql://seu_usuario:sua_senha@localhost:3307/game"
-   PORT=7788
-   SALT_ROUNDS=10
-   SESSION_SECRET=sua_chave_secreta_aqui
-   LOGS_PATH=logs
-   ```
+### Comandos Disponíveis
 
-4. **Configure o banco de dados**
-
-   ```bash
-   npx prisma migrate reset
-   npx prisma generate
-   ```
-
-5. **Rode o projeto**
-
-   ```bash
-   # para desenvolvimento
-   npm start
-
-   # para produção
-   npm run deploy
-   npm run start:prod
-
-   # para compilar SCSS (em outro terminal)
-   npm run sass
-   ```
+```bash
+# Comandos principais
+make help       # Mostrar todos os comandos
+make setup      # Configurar projeto completo
+make start      # Iniciar aplicação
+make dev        # Setup + start (desenvolvimento completo)
+```
 
 ## Tecnologias Utilizadas
 
@@ -114,6 +86,35 @@ _Página não existente (404)_
 - **Nodemon** para desenvolvimento
 - **TypeScript** para tipagem estática
 - **SASS** para compilação de estilos
+
+## Páginas da Aplicação
+
+![Lista de Cursos](screenshots/pages/login.png)
+_Página de Login_
+
+![Lista de Cursos](screenshots/pages/unlogged/createAccount.png)
+_Página de Criação de Conta_
+
+![Lista de Cursos](screenshots/pages/logged/home.png)
+_Página Inicial para Usuários Logados_
+
+![Lista de Cursos](screenshots/pages/logged/accountDetails.png)
+_Página de Detalhes da Conta_
+
+![Lista de Cursos](screenshots/pages/logged/accountUpdate.png)
+_Página de Atualizar Conta_
+
+![Lista de Cursos](screenshots/pages/logged/changePassword.png)
+_Página de Alterar Senha_
+
+![Lista de Cursos](screenshots/pages/about.png)
+_Página de Sobre_
+
+![Lista de Cursos](screenshots/pages/unlogged/home.png)
+_Página Inicial para Usuários Deslogados - Jogo fica inacessível_
+
+![Lista de Cursos](screenshots/pages/404.png)
+_Página não existente (404)_
 
 ## Contribuindo
 

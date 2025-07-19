@@ -38,6 +38,7 @@
     "express": "^5.1.0",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.1",
+    "joi": "^17.13.3",
     "lorem-ipsum": "^2.0.8",
     "morgan": "^1.10.0",
     "sass": "^1.89.2",

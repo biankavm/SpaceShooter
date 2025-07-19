@@ -1,12 +1,26 @@
 import { Request, Response } from 'express';
 import { checkCredentials } from '../services/account';
 import { getUserByEmail, updateUserPassword } from '../services/user';
+import loginSchema from '../validations/login.schema';
 
 const login = async (req: Request, res: Response) => {
   if (req.method === 'GET') res.render('account/login');
   else {
     try {
-      const { email, password } = req.body;
+      const body = req.body;
+      const { error, value } = loginSchema.validate(req.body, {
+        abortEarly: false,
+      });
+
+      if (error) {
+        const errors: { [key: string]: string } = {};
+        error.details.forEach((detail) => {
+          const key = detail.path.join('.');
+          errors[key] = detail.message;
+        });
+        return res.render('account/login', { values: body, errors });
+      }
+      const { email, password } = body;
       const ok = await checkCredentials(email, password);
       const user = await getUserByEmail(email);
 

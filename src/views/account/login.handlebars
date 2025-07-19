@@ -1,3 +1,4 @@
+
 {{> page-header 
   icon="bi bi-person-circle" 
   title="Fazer Login" 
@@ -10,6 +11,8 @@
   </div>
 {{/if}}
 
+<script src="/js/validations/login.js"></script>
+
 <form action='/account/login' method='post'>
   {{> form-field 
     type="text"
@@ -19,12 +22,24 @@
     placeholder="exemplo@email.com"
   }}
 
+  {{#if errors.email}}
+    <div class="alert alert-danger" role="alert">
+      {{errors.email}}
+    </div>
+  {{/if}}
+
   {{> form-field 
     type="password"
     name="password"
     id="password"
     label="Senha"
   }}
+
+  {{#if errors.password}}
+    <div class="alert alert-danger" role="alert">
+      {{errors.password}}
+    </div>
+  {{/if}}
 
   <button type='submit' class='btn btn-primary button'>Entrar</button>
 </form>

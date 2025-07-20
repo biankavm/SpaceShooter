@@ -70,6 +70,10 @@ const changePassword = async (req: Request, res: Response) => {
             error: 'As senhas não conferem. Tente novamente!',
           });
         }
+      } else {
+        res.render('account/changePassword', {
+          error: 'Senha atual incorreta. Tente novamente!',
+        });
       }
     } catch (error) {
       console.log('Erro na alteração de senha:', error);

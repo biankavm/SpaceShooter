@@ -1,3 +1,5 @@
+DOCKER_COMPOSE := $(shell if command -v docker-compose >/dev/null 2>&1; then echo "docker-compose"; elif docker compose version >/dev/null 2>&1; then echo "docker compose"; else echo ""; fi)
+
 .PHONY: help install setup start stop restart logs reset clean build deploy sass
 
 help:
@@ -20,6 +22,14 @@ install:
 
 setup: install
 	@echo "🚀 Configurando projeto..."
+	@# --> Verificar se Docker Compose está disponível
+	@if [ -z "$(DOCKER_COMPOSE)" ]; then \
+		echo "❌ Erro: Docker Compose não encontrado!"; \
+		echo "💡 Instale o Docker Compose ou certifique-se de que o Docker Desktop está instalado."; \
+		exit 1; \
+	fi
+	@echo "✅ Docker Compose detectado: $(DOCKER_COMPOSE)"
+	
 	@# --> cria .env apenas se não existir
 	@if [ ! -f .env ]; then \
 		echo "📝 Criando arquivo .env..."; \
@@ -38,13 +48,19 @@ setup: install
 	else \
 		# senão, cria e sobe **todos** os containers do projeto \
 		echo "Criando e iniciando containers Docker..."; \
-		docker-compose up -d; \
+		$(DOCKER_COMPOSE) up -d; \
+		if [ $? -ne 0 ]; then \
+			echo "❌ Erro ao iniciar containers Docker!"; \
+			echo "💡 Verifique se o Docker está rodando e se você tem permissões adequadas."; \
+			exit 1; \
+		fi; \
 		echo "⏳ Aguardando MySQL inicializar..."; \
 		sleep 10; \
 	fi
 
 	@echo "🗄️ Configurando banco de dados..."
 	@npx prisma generate
+	@npx prisma migrate deploy
 
 	@echo "✅ Setup concluído!"
 	@echo "🎮 Execute 'make start' para iniciar o jogo"
@@ -57,16 +73,16 @@ start:
 
 stop:
 	@echo "🛑 Parando containers..."
-	docker-compose down
+	$(DOCKER_COMPOSE) down
 
 restart:
 	@echo "🔄 Reiniciando containers..."
-	docker-compose restart
+	$(DOCKER_COMPOSE) restart
 
 reset:
 	@echo "🗄️ Resetando banco de dados..."
-	docker-compose down -v
-	docker-compose up -d
+	$(DOCKER_COMPOSE) down -v
+	$(DOCKER_COMPOSE) up -d
 	@sleep 10
 	npx prisma migrate reset --force
 	@echo "✅ Banco resetado!"

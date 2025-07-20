@@ -18,7 +18,7 @@ class Game {
   }
 
   startGame() {
-    window.addEventListener('keyup', e => {
+    window.addEventListener('keyup', (e) => {
       if (e.key === ' ' && !this.isRunning) {
         this.#changeGameState();
       }
@@ -26,7 +26,7 @@ class Game {
   }
 
   stop() {
-    window.addEventListener('keydown', e => {
+    window.addEventListener('keydown', (e) => {
       if (e.key === 'p') {
         this.#changeGameState();
       }
@@ -64,7 +64,7 @@ class Game {
   }
 
   movePlayer() {
-    window.addEventListener('keydown', e => {
+    window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') player.changeDirection(-1);
 
       if (e.key === 'ArrowRight') player.changeDirection(+1);
@@ -72,7 +72,7 @@ class Game {
   }
 
   shootPlayer() {
-    window.addEventListener('keydown', e => {
+    window.addEventListener('keydown', (e) => {
       if (e.key === ' ' && this.isRunning) {
         player.shoot();
       }
@@ -82,7 +82,7 @@ class Game {
   destroyEnemyWhenOutOfScreen() {
     setInterval(() => {
       enemys.enemysList = enemys.enemysList.filter(
-        e => e.element.offsetTop < TAMY
+        (e) => e.element.offsetTop < TAMY
       );
     }, 1000);
   }

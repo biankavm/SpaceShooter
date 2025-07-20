@@ -8,10 +8,8 @@ import { identifyCollision } from '../utils/identifyColision.js';
 const directions = [
   'assets/png/playerLeft.png',
   'assets/png/player.png',
-  'assets/png/playerRight.png',
+  'assets/png/playerRight.png'
 ];
-
-const HALF_PLAYER_WIDTH = 50; // metade da largura do player, necessário para calcular a posição central
 
 class Player {
   constructor() {
@@ -20,9 +18,17 @@ class Player {
     this.direction = 1;
     this.element.src = directions[this.direction];
     this.element.style.bottom = '20px';
-    this.rightLimit = TAMX - 100;
-    this.element.style.left = `${TAMX / 2 - HALF_PLAYER_WIDTH}px`;
+
+    // Adicionar o elemento ao DOM primeiro para poder medir sua largura
     space.element.appendChild(this.element);
+
+    // Agora podemos obter a largura real do player
+    const playerWidth = this.element.offsetWidth;
+    this.rightLimit = TAMX - playerWidth;
+
+    // Centralizar o player usando a largura real
+    this.element.style.left = `${TAMX / 2 - playerWidth / 2}px`;
+
     this.isMove = false;
     this.lasers = [];
     this.isDamaged = false;
@@ -42,19 +48,35 @@ class Player {
   }
   move() {
     if (!this.isMove) return;
-    // style.left indica a posição horizontal do jogador.
-    // decrementar move para a esquerda; incrementar, para a direita
 
-    // se o left é 0 no canto ou TAMX no outro, impedir o movimento
-    if (this.direction === 0 && parseInt(this.element.style.left) !== 0)
-      this.element.style.left = `${parseInt(this.element.style.left) - 3}px`;
-    if (
-      this.direction === 2 &&
-      parseInt(this.element.style.left) !== this.rightLimit
-    )
-      this.element.style.left = `${parseInt(this.element.style.left) + 3}px`;
+    // obtem a largura real do player
+    const playerWidth = this.element.offsetWidth;
 
-    this.lasers = this.lasers.filter(laser => {
+    // atualiza o limite direito baseado na largura atual da tela e largura real do player
+    this.rightLimit = TAMX - playerWidth;
+
+    // obtem a posição atual do player
+    const currentLeft = parseInt(this.element.style.left);
+
+    // move para a esquerda (direction === 0)
+    if (this.direction === 0) {
+      const newLeft = currentLeft - 3;
+      // verifica se não vai sair da tela pela esquerda
+      if (newLeft >= 0) {
+        this.element.style.left = `${newLeft}px`;
+      }
+    }
+
+    // move para a direita (direction === 2)
+    if (this.direction === 2) {
+      const newLeft = currentLeft + 3;
+      // verifica se não vai sair da tela pela direita
+      if (newLeft <= this.rightLimit) {
+        this.element.style.left = `${newLeft}px`;
+      }
+    }
+
+    this.lasers = this.lasers.filter((laser) => {
       laser.move();
       return !laser._destroyed;
     });
@@ -84,12 +106,18 @@ class Player {
     if (this.isDamaged) return;
     const playerPosition = this.element.getBoundingClientRect();
 
-    enemys.enemysList.forEach(enemy => {
+    enemys.enemysList.forEach((enemy) => {
       const hit = identifyCollision(enemy, playerPosition);
 
       if (hit) {
         this.isMove = false;
         this.isDamaged = true;
+        // se tomou dano, destruir todos os lasers disparados (e remover do DOM)
+        this.lasers.forEach((laser) => {
+          laser._destroyed = true;
+          laser.element.remove();
+        });
+
         this.element.src = 'assets/png/playerDamaged.png';
         stats.removeLife();
         setTimeout(() => {

@@ -51,7 +51,7 @@ body {
 }
 
 #space {
-  background-image: url("../assets/png/Background/starBackground.png");
+  background-image: url('../assets/png/Background/starBackground.png');
   position: relative;
   overflow: hidden;
   flex: 1 1 auto;
@@ -113,7 +113,7 @@ body {
 #gameOverScreen .game-over-message {
   color: #5e3f6b;
   font-size: 72px;
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   text-shadow: 2px 2px #000;
   margin: 0;
 }
@@ -122,7 +122,7 @@ body {
   margin-top: 24px;
   padding: 12px 28px;
   font-size: 24px;
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   color: #fff;
   background: transparent;
   border: 2px solid #fff;

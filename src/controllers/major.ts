@@ -4,7 +4,7 @@ import {
   getMajors,
   getMajorById,
   updateMajor,
-  destroyMajor,
+  destroyMajor
 } from '../services/major';
 
 const index = async (req: Request, res: Response) => {
@@ -23,7 +23,7 @@ const create = async (req: Request, res: Response) => {
   } else {
     try {
       await createMajor(req.body);
-      res.redirect('/majors/index');
+      res.redirect('/users/create');
     } catch (error) {
       res.status(500).send('Erro ao criar o major');
       console.log(error);
@@ -37,7 +37,7 @@ const read = async (req: Request, res: Response) => {
   try {
     const major = await getMajorById(id);
     res.render('major/read', {
-      major,
+      major
     });
   } catch (error) {
     console.log(error);

@@ -19,6 +19,12 @@
     placeholder="Seu nome"
   }}
 
+  {{#if errors.name}}
+  <div class="alert alert-warning" role="alert">
+    {{errors.name}}
+  </div>
+  {{/if}}
+
   {{> form-field 
     type="text"
     name="email"
@@ -27,12 +33,26 @@
     placeholder="exemplo@email.com"
   }}
 
+  {{#if errors.email}}
+  <div class="alert alert-warning" role="alert">
+    {{errors.email}}
+  </div>
+  {{/if}}
+
   {{> form-field 
     type="password"
     name="password"
     id="password"
     label="Senha"
   }}
+
+  {{#if errors.password}}
+
+    <div class="alert alert-warning" role="alert">
+      {{errors.password}}
+    </div>
+
+  {{/if}}
 
   {{> form-field 
     type="password"
@@ -41,6 +61,11 @@
     label="Confirmar Senha"
   }}
 
+  {{#if errors.confirmPassword}}
+    <div class="alert alert-warning" role="alert">
+      {{errors.confirmPassword}}
+    </div>
+  {{/if}}
 
   {{> form-field 
     type="select"
@@ -50,6 +75,12 @@
     placeholder="Selecione um curso"
     options=majors
   }}
+
+  {{#if errors.majorId}}
+    <div class="alert alert-warning" role="alert">
+      {{errors.majorId}}
+    </div>
+  {{/if}}
 
   <div class="d-flex flex-column">
     <a href="/majors/create" class="mb-3 link">

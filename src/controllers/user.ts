@@ -13,6 +13,7 @@ import {
   saveScoreUser,
   updateScoreUser,
 } from '../services/gameSession';
+import registerSchema from '../validations/register.schema';
 
 // ctrl + shift + seta para baixo permite edição em bloco
 
@@ -27,14 +28,31 @@ const index = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-  const majors = await getMajors();
   if (req.method === 'GET') {
+    const majors = await getMajors();
     res.render('user/create', { majors });
   } else if (req.method === 'POST') {
     try {
+      const body = req.body;
+
+      const { error, value } = registerSchema.validate(body, {
+        abortEarly: false,
+      });
+
+      if (error) {
+        const errors: { [key: string]: string } = {};
+        error.details.forEach((detail) => {
+          const key = detail.path.join('.');
+          errors[key] = detail.message;
+        });
+        const majors = await getMajors();
+        return res.render('user/create', { values: body, errors, majors });
+      }
+
       const { confirmPassword, ...userData } = req.body;
       console.log(confirmPassword, userData.password);
       if (confirmPassword !== userData.password) {
+        const majors = await getMajors();
         res.render('user/create', {
           majors,
           error: 'As senhas não conferem. Tente novamente!',

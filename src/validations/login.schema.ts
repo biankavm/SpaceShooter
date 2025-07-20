@@ -5,9 +5,9 @@ const loginSchema = Joi.object({
     'string.email': 'Email inválido',
     'any.required': 'Email é obrigatório',
   }),
-  password: Joi.string().min(5).max(30).required().messages({
+  password: Joi.string().min(3).max(30).required().messages({
     'any.required': 'Senha é obrigatória',
-    'string.min': 'Senha deve ter no mínimo 5 caracteres',
+    'string.min': 'Senha deve ter no mínimo 3 caracteres',
     'string.max': 'Senha deve ter no máximo 30 caracteres',
   }),
 });

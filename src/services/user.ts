@@ -35,13 +35,7 @@ export const updateUser = async (
 ): Promise<User> =>
   prisma.user.update({
     where: { id },
-    data: {
-      name: updatedUser.name,
-      email: updatedUser.email,
-      major: {
-        connect: { id: updatedUser.majorId },
-      },
-    },
+    data: updatedUser,
   });
 
 export const updateUserPassword = async (

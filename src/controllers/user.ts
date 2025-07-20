@@ -110,10 +110,9 @@ const update = async (req: Request, res: Response) => {
     try {
       const updatedUser = await updateUser(id, req.body);
 
-      // Atualizar a sessão se o usuário atualizado for o mesmo da sessão
-      if (req.session.user && req.session.user.id === id) {
+      // atualizar a sessão se o usuário atualizado for o mesmo da sessão
+      if (req.session.user && req.session.user.id === id)
         req.session.user = updatedUser;
-      }
 
       res.redirect('/');
     } catch (error) {

@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import loginSchema from './login.schema';
 
 const registerSchema = Joi.object({
   name: Joi.string().required().messages({

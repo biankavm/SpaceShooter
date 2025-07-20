@@ -14,6 +14,7 @@ import {
   updateScoreUser,
 } from '../services/gameSession';
 import registerSchema from '../validations/register.schema';
+import updateSchema from '../validations/update.schema';
 
 // ctrl + shift + seta para baixo permite edição em bloco
 
@@ -28,6 +29,8 @@ const index = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
+  const majors = await getMajors();
+
   if (req.method === 'GET') {
     const majors = await getMajors();
     res.render('user/create', { majors });
@@ -35,7 +38,7 @@ const create = async (req: Request, res: Response) => {
     try {
       const body = req.body;
 
-      const { error, value } = registerSchema.validate(body, {
+      const { error } = registerSchema.validate(body, {
         abortEarly: false,
       });
 
@@ -45,20 +48,18 @@ const create = async (req: Request, res: Response) => {
           const key = detail.path.join('.');
           errors[key] = detail.message;
         });
-        const majors = await getMajors();
         return res.render('user/create', { values: body, errors, majors });
       }
 
       const { confirmPassword, ...userData } = req.body;
       console.log(confirmPassword, userData.password);
       if (confirmPassword !== userData.password) {
-        const majors = await getMajors();
         res.render('user/create', {
           majors,
           error: 'As senhas não conferem. Tente novamente!',
         });
       } else {
-        const user = await createUser(userData as CreateUserDTO);
+        await createUser(userData as CreateUserDTO);
         res.redirect(`/account/login`);
       }
     } catch (error) {
@@ -82,18 +83,38 @@ const read = async (req: Request, res: Response) => {
 
 const update = async (req: Request, res: Response) => {
   const { id } = req.params;
+  const user = await getUserById(id);
+  const majors = await getMajors();
+
   if (req.method === 'GET') {
     try {
-      const user = await getUserById(id);
-      const majors = await getMajors();
       res.render('user/update', { user, majors });
     } catch (error) {
       res.status(500).send('Erro ao buscar dados para atualização');
       console.log(error);
     }
   } else if (req.method === 'POST') {
+    const body = req.body;
+    const { error } = updateSchema.validate(body, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      const errors: { [key: string]: string } = {};
+      error.details.forEach((detail) => {
+        const key = detail.path.join('.');
+        errors[key] = detail.message;
+      });
+      return res.render('user/update', { user, majors, errors });
+    }
     try {
-      await updateUser(id, req.body);
+      const updatedUser = await updateUser(id, req.body);
+
+      // Atualizar a sessão se o usuário atualizado for o mesmo da sessão
+      if (req.session.user && req.session.user.id === id) {
+        req.session.user = updatedUser;
+      }
+
       res.redirect('/');
     } catch (error) {
       res.status(500).send('Erro ao atualizar o usuário');

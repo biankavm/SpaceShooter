@@ -1,5 +1,5 @@
 import { PrismaClient, User } from '@prisma/client';
-import { CreateUserDTO } from '../types/user';
+import { CreateUserDTO, UpdateUserDTO } from '../types/user';
 import { genSalt, hash } from 'bcryptjs';
 // o controlador majorController chama o serviço major.ts para se comunicar com o modelo e criar o Major!
 
@@ -31,11 +31,17 @@ export const getUserByEmail = async (email: string): Promise<User | null> =>
 
 export const updateUser = async (
   id: string,
-  updatedUser: User
+  updatedUser: UpdateUserDTO
 ): Promise<User> =>
   prisma.user.update({
     where: { id },
-    data: updatedUser,
+    data: {
+      name: updatedUser.name,
+      email: updatedUser.email,
+      major: {
+        connect: { id: updatedUser.majorId },
+      },
+    },
   });
 
 export const updateUserPassword = async (

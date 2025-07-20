@@ -4,7 +4,7 @@ export function listTechnologies(technologies: Technology[]) {
   // const list = professors.map((p) => `${p.name} - sala ${p.room}`);
   // return `<ul> ${list.join('')}</ul>`;
 
-  const list = technologies.map(t =>
+  const list = technologies.map((t) =>
     t.poweredByNodejs === true ? `<li>${t.name} - ${t.type}</li>` : null
   );
 

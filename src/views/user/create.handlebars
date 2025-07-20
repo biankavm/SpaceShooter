@@ -17,13 +17,8 @@
     id="name"
     label="Nome"
     placeholder="Seu nome"
+    error=errors.name
   }}
-
-  {{#if errors.name}}
-  <div class="alert alert-warning" role="alert">
-    {{errors.name}}
-  </div>
-  {{/if}}
 
   {{> form-field 
     type="text"
@@ -31,41 +26,24 @@
     id="email"
     label="Email"
     placeholder="exemplo@email.com"
+    error=errors.email
   }}
-
-  {{#if errors.email}}
-  <div class="alert alert-warning" role="alert">
-    {{errors.email}}
-  </div>
-  {{/if}}
 
   {{> form-field 
     type="password"
     name="password"
     id="password"
     label="Senha"
+    error=errors.password
   }}
-
-  {{#if errors.password}}
-
-    <div class="alert alert-warning" role="alert">
-      {{errors.password}}
-    </div>
-
-  {{/if}}
 
   {{> form-field 
     type="password"
     name="confirmPassword"
     id="confirmPassword"
     label="Confirmar Senha"
+    error=errors.confirmPassword
   }}
-
-  {{#if errors.confirmPassword}}
-    <div class="alert alert-warning" role="alert">
-      {{errors.confirmPassword}}
-    </div>
-  {{/if}}
 
   {{> form-field 
     type="select"
@@ -74,13 +52,8 @@
     label="Curso"
     placeholder="Selecione um curso"
     options=majors
+    error=errors.majorId
   }}
-
-  {{#if errors.majorId}}
-    <div class="alert alert-warning" role="alert">
-      {{errors.majorId}}
-    </div>
-  {{/if}}
 
   <div class="d-flex flex-column">
     <a href="/majors/create" class="mb-3 link">

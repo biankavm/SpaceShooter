@@ -40,4 +40,11 @@
       {{#if value}}value='{{value}}'{{/if}}
     />
   {{/if}}
+
+  {{#if error}}
+    <div class="invalid-feedback d-block">
+      <i class="bi bi-exclamation-circle me-1"></i>
+      {{error}}
+    </div>
+  {{/if}}
 </div> 

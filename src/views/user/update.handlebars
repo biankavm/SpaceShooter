@@ -12,13 +12,8 @@
     label="Nome"
     placeholder="Seu nome"
     value=user.name
+    error=errors.name
   }}
-
-  {{#if errors.name}}
-    <div class="alert alert-warning">
-      {{errors.name}}
-    </div>
-  {{/if}}
 
   {{> form-field 
     type="text"
@@ -27,13 +22,8 @@
     label="Email"
     placeholder="exemplo@email.com"
     value=user.email
+    error=errors.email
   }}
-
-  {{#if errors.email}}
-    <div class="alert alert-warning">
-      {{errors.email}}
-    </div>
-  {{/if}}
 
   {{> form-field 
     type="select"
@@ -43,13 +33,8 @@
     placeholder="Selecione um curso"
     options=majors
     selectedValue=user.majorId
+    error=errors.majorId
   }}
-
-  {{#if errors.majorId}}
-    <div class="alert alert-warning">
-      {{errors.majorId}}
-    </div>
-  {{/if}}
 
   <button type='submit' class='btn btn-primary button'>Atualizar Usuário</button>
 </form>

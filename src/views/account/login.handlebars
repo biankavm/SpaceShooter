@@ -20,26 +20,17 @@
     id="email"
     label="Email"
     placeholder="exemplo@email.com"
+    error=errors.email
   }}
-
-  {{#if errors.email}}
-    <div class="alert alert-warning" role="alert">
-      {{errors.email}}
-    </div>
-  {{/if}}
 
   {{> form-field 
     type="password"
     name="password"
     id="password"
     label="Senha"
+    placeholder="Sua senha"
+    error=errors.password
   }}
-
-  {{#if errors.password}}
-    <div class="alert alert-warning" role="alert">
-      {{errors.password}}
-    </div>
-  {{/if}}
 
   <button type='submit' class='btn btn-primary button'>Entrar</button>
 </form>

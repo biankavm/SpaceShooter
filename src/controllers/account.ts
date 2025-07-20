@@ -18,6 +18,7 @@ const login = async (req: Request, res: Response) => {
           const key = detail.path.join('.');
           errors[key] = detail.message;
         });
+
         return res.render('account/login', { values: body, errors });
       }
       const { email, password } = body;

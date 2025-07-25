@@ -8,7 +8,7 @@ import { identifyCollision } from '../utils/identifyColision.js';
 const directions = [
   'assets/png/playerLeft.png',
   'assets/png/player.png',
-  'assets/png/playerRight.png'
+  'assets/png/playerRight.png',
 ];
 
 class Player {
@@ -19,31 +19,45 @@ class Player {
     this.element.src = directions[this.direction];
     this.element.style.bottom = '20px';
 
-    // Adicionar o elemento ao DOM primeiro para poder medir sua largura
     space.element.appendChild(this.element);
 
-    // Agora podemos obter a largura real do player
     const playerWidth = this.element.offsetWidth;
     this.rightLimit = TAMX - playerWidth;
 
-    // Centralizar o player usando a largura real
     this.element.style.left = `${TAMX / 2 - playerWidth / 2}px`;
 
     this.isMove = false;
     this.lasers = [];
     this.isDamaged = false;
+
+    this.keys = {
+      left: false,
+      right: false,
+    };
   }
   changeDirection(giro) {
-    // -1 +1
     if (!this.isMove) return;
 
-    const newDirection = this.direction + giro;
-    if (newDirection >= 0 && newDirection <= 2) {
-      if (!this.isDamaged) {
-        this.direction = newDirection;
+    if (giro === -1) {
+      this.keys.left = true;
+      this.keys.right = false;
+    } else if (giro === 1) {
+      this.keys.left = false;
+      this.keys.right = true;
+    } else {
+      this.keys.left = false;
+      this.keys.right = false;
+    }
 
-        this.element.src = directions[this.direction];
+    if (!this.isDamaged) {
+      if (this.keys.left) {
+        this.direction = 0;
+      } else if (this.keys.right) {
+        this.direction = 2;
+      } else {
+        this.direction = 1;
       }
+      this.element.src = directions[this.direction];
     }
   }
   move() {
@@ -58,8 +72,8 @@ class Player {
     // obtem a posição atual do player
     const currentLeft = parseInt(this.element.style.left);
 
-    // move para a esquerda (direction === 0)
-    if (this.direction === 0) {
+    // move para a esquerda (tecla esquerda pressionada)
+    if (this.keys.left) {
       const newLeft = currentLeft - 3;
       // verifica se não vai sair da tela pela esquerda
       if (newLeft >= 0) {
@@ -67,8 +81,8 @@ class Player {
       }
     }
 
-    // move para a direita (direction === 2)
-    if (this.direction === 2) {
+    // move para a direita (tecla direita pressionada)
+    if (this.keys.right) {
       const newLeft = currentLeft + 3;
       // verifica se não vai sair da tela pela direita
       if (newLeft <= this.rightLimit) {

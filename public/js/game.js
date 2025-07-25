@@ -64,10 +64,21 @@ class Game {
   }
 
   movePlayer() {
+    // evento quando tecla é pressionada
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') player.changeDirection(-1);
+      if (e.key === 'ArrowLeft') {
+        player.changeDirection(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        player.changeDirection(1);
+      }
+    });
 
-      if (e.key === 'ArrowRight') player.changeDirection(+1);
+    // evento quando tecla é solta
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        player.changeDirection(0); // nave reta
+      }
     });
   }
 

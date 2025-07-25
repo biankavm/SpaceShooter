@@ -33,7 +33,24 @@ setup: install
 	@# --> cria .env apenas se não existir
 	@if [ ! -f .env ]; then \
 		echo "📝 Criando arquivo .env..."; \
-		cp .env.example .env; \
+		echo "# Insert here the port you want to use" > .env; \
+		echo "PORT=7799" >> .env; \
+		echo "# insert here the environment you want to use" >> .env; \
+		echo "NODE_ENV=development" >> .env; \
+		echo "# insert here the path to the logs file" >> .env; \
+		echo "LOGS_PATH=logs" >> .env; \
+		echo "" >> .env; \
+		echo "# insert here the secret for the session" >> .env; \
+		echo "SECRET_SESSION=sua_chave_secreta_aqui" >> .env; \
+		echo "" >> .env; \
+		echo "# insert here the salt rounds for the password" >> .env; \
+		echo "SALT_ROUNDS=10" >> .env; \
+		echo "" >> .env; \
+		echo "# insert here the password for the root user" >> .env; \
+		echo "DATABASE_ROOT_PASSWORD=senhasegura" >> .env; \
+		echo "" >> .env; \
+		echo "# insert here the value to the database" >> .env; \
+		echo 'DATABASE_URL="mysql://root:senhasegura@127.0.0.1:3307/game"' >> .env; \
 	fi
 
 	@# --> se o container mysql-game-app já existir

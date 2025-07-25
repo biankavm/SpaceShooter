@@ -13,7 +13,7 @@ O trabalho consiste na elaboração de um sistema com o Jogo Space Shooter, perm
 - **Git**
 - **Make** (geralmente já vem instalado no Linux/macOS)
 
-### Setup Rápido
+### Setup
 
 1. **Clone o repositório**
 

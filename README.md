@@ -18,8 +18,8 @@ O trabalho consiste na elaboração de um sistema com o Jogo Space Shooter, perm
 1. **Clone o repositório**
 
    ```bash
-   git clone https://github.com/biankavm/web-programming.git
-   cd web-programming/ExpTsFinal
+   git clone https://github.com/biankavm/SpaceShooter.git
+   cd SpaceShooter
    ```
 
 2. **Instale as dependências**

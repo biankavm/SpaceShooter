@@ -1,8 +1,26 @@
-# Space Shooter
+# 🎮 Space Shooter
 
 Olá! Este é um projeto que desenvolvi durante a graduação para a disciplina de Programação para Web.
 
 O trabalho consiste na elaboração de um sistema com o Jogo Space Shooter, permitindo cadastro de usuários, cursos, e amostragem do ranking com os melhores colocados no Jogo!
+
+## Como Jogar
+
+### Controles do Jogo
+
+| Tecla                 | Ação                                 |
+| --------------------- | ------------------------------------ |
+| **Barra de Espaço**   | Inicia o jogo / Atira durante o jogo |
+| **P**                 | Pausa/Despausa o jogo                |
+| **←** (Seta Esquerda) | Move a nave para a esquerda          |
+| **→** (Seta Direita)  | Move a nave para a direita           |
+
+### Objetivo
+
+- **Destrua os inimigos** que aparecem na tela
+- **Evite colisões** com as naves inimigas
+- **Sobreviva o máximo possível** para conseguir a maior pontuação
+- **Suba no ranking** e compare sua pontuação com outros jogadores!
 
 ## Como Executar
 
@@ -39,13 +57,13 @@ SESSION_SECRET=sua_chave_secreta_aqui # pode ser uma sequência aleatória de le
 DATABASE_ROOT_PASSWORD=senhasegura
 ```
 
-3. **Inicie o jogo**
+4. **Inicie o jogo**
 
    ```bash
    make start
    ```
 
-4. **Acesse a aplicação**
+5. **Acesse a aplicação**
    - **Jogo**: `http://localhost:PORT`
    - **phpMyAdmin**: `http://localhost:8081`
 
@@ -68,6 +86,7 @@ make dev        # Setup + start (desenvolvimento completo)
 - **bcryptjs** para criptografia de senhas
 - **express-session** para controle de sessões
 - **Morgan** para logs de acesso
+- **Joi** para validação de dados
 
 ### **Frontend**
 
@@ -116,6 +135,20 @@ _Página Inicial para Usuários Deslogados - Jogo fica inacessível_
 ![Lista de Cursos](screenshots/pages/404.png)
 _Página não existente (404)_
 
+## Músicas e Créditos
+
+### Trilha Sonora do Jogo
+
+No projeto utilizei músicas de fundo para criar uma experiência mais imersiva, dentre elas:
+
+- **Música Principal**: "Battle in Stars" - Tema de fundo durante o jogo
+- **Música de Fim de Jogo**: "Defeat" - Toca quando o jogador perde
+- **Efeitos Sonoros**: Sons de tiro e colisão para maior imersão
+
+### Créditos das Músicas
+
+As músicas e efeitos sonoros utilizados nesse projeto foram obtidos do [OpenGameArt.org](https://opengameart.org/), uma plataforma de recursos gratuitos para desenvolvedores de jogos.
+
 ## Contribuindo
 
 Contribuições são sempre bem-vindas! Se você quiser melhorar este projeto:
@@ -140,6 +173,13 @@ npm start
 ```
 
 E prepare-se para defender a galáxia dos invasores alienígenas!
+
+## Agradecimentos
+
+- **Professores e colegas** da disciplina de Programação para Web
+- **Comunidade open source** pelos recursos e bibliotecas utilizadas
+- **Criadores das músicas** que tornam o jogo mais imersivo
+- **Todos que testaram e deram feedback** durante o desenvolvimento
 
 ---
 

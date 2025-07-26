@@ -2,6 +2,14 @@ export class Audio {
   constructor() {
     this.startGameMusic = null;
     this.gameOverMusic = null;
+    this.shootMusic = null;
+  }
+
+  getShootMusic() {
+    if (!this.shootMusic) {
+      this.shootMusic = document.getElementById('long-shoot');
+    }
+    return this.shootMusic;
   }
 
   getStartGameMusic() {
@@ -34,6 +42,7 @@ export class Audio {
 
   playStartGameMusic() {
     const music = this.getStartGameMusic();
+    music.volume = 0.5;
     if (music) {
       music.play().catch((error) => {
         console.error('Erro ao tocar música:', error);
@@ -63,6 +72,24 @@ export class Audio {
 
   stopGameOverMusic() {
     const music = this.getGameOverMusic();
+    if (music) {
+      music.pause();
+    }
+  }
+
+  playShootMusic() {
+    const music = this.getShootMusic();
+    if (music) {
+      music.volume = 1; // Define o volume para 80%
+      music.currentTime = 0; // Reinicia o som
+      music.play().catch((error) => {
+        console.error('Erro ao tocar som de tiro:', error);
+      });
+    }
+  }
+
+  stopShootMusic() {
+    const music = this.getShootMusic();
     if (music) {
       music.pause();
     }

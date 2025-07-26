@@ -4,6 +4,7 @@ import { Laser } from './laser.js';
 import { enemys } from './enemys.js';
 import { stats } from './stats.js';
 import { identifyCollision } from '../utils/identifyColision.js';
+import { audio } from './audio.js';
 
 const directions = [
   'assets/png/playerLeft.png',
@@ -29,7 +30,7 @@ class Player {
     this.isMove = false;
     this.lasers = [];
     this.isDamaged = false;
-
+    this.shootMusic = audio.getShootMusic();
     this.keys = {
       left: false,
       right: false,
@@ -134,6 +135,10 @@ class Player {
 
     const laser = new Laser(startX, startY);
     this.lasers.push(laser);
+
+    if (this.shootMusic) {
+      audio.playShootMusic();
+    }
   }
 
   colision() {

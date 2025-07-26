@@ -49,11 +49,9 @@ class Player {
     const currentLeft = parseInt(this.element.style.left);
 
     // Se o jogador estiver fora dos limites após o redimensionamento, reposiciona
-    if (currentLeft < 0) {
-      this.element.style.left = '0px';
-    } else if (currentLeft > this.rightLimit) {
+    if (currentLeft < 0) this.element.style.left = '0px';
+    else if (currentLeft > this.rightLimit)
       this.element.style.left = `${this.rightLimit}px`;
-    }
   }
 
   changeDirection(giro) {
@@ -71,13 +69,10 @@ class Player {
     }
 
     if (!this.isDamaged) {
-      if (this.keys.left) {
-        this.direction = 0;
-      } else if (this.keys.right) {
-        this.direction = 2;
-      } else {
-        this.direction = 1;
-      }
+      if (this.keys.left) this.direction = 0;
+      else if (this.keys.right) this.direction = 2;
+      else this.direction = 1;
+
       this.element.src = directions[this.direction];
     }
   }
@@ -106,9 +101,7 @@ class Player {
     if (this.keys.right) {
       const newLeft = currentLeft + 3;
       // verifica se não vai sair da tela pela direita
-      if (newLeft <= this.rightLimit) {
-        this.element.style.left = `${newLeft}px`;
-      }
+      if (newLeft <= this.rightLimit) this.element.style.left = `${newLeft}px`;
     }
 
     this.lasers = this.lasers.filter((laser) => {

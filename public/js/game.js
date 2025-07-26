@@ -27,9 +27,7 @@ class Game {
 
   startGame() {
     window.addEventListener('keyup', (e) => {
-      if (e.key === ' ' && !this.isRunning) {
-        this.#changeGameState();
-      }
+      if (e.key === ' ' && !this.isRunning) this.#changeGameState();
     });
   }
 
@@ -96,29 +94,45 @@ class Game {
   }
 
   movePlayer() {
-    // evento quando tecla é pressionada
+    const keysPressed = {
+      left: false,
+      right: false,
+    };
+
+    // tecla é pressionada
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        player.changeDirection(-1);
+      if (e.key === 'ArrowLeft' && !keysPressed.left) {
+        keysPressed.left = true;
+        this.updatePlayerDirection(keysPressed);
       }
-      if (e.key === 'ArrowRight') {
-        player.changeDirection(1);
+      if (e.key === 'ArrowRight' && !keysPressed.right) {
+        keysPressed.right = true;
+        this.updatePlayerDirection(keysPressed);
       }
     });
 
-    // evento quando tecla é solta
+    // tecla é solta
     window.addEventListener('keyup', (e) => {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        player.changeDirection(0); // nave reta
+      if (e.key === 'ArrowLeft') {
+        keysPressed.left = false;
+        this.updatePlayerDirection(keysPressed);
+      }
+      if (e.key === 'ArrowRight') {
+        keysPressed.right = false;
+        this.updatePlayerDirection(keysPressed);
       }
     });
   }
 
+  updatePlayerDirection(keysPressed) {
+    if (keysPressed.left && !keysPressed.right) player.changeDirection(-1);
+    else if (keysPressed.right && !keysPressed.left) player.changeDirection(1);
+    else player.changeDirection(0); // nave reta
+  }
+
   shootPlayer() {
     window.addEventListener('keydown', (e) => {
-      if (e.key === ' ' && this.isRunning) {
-        player.shoot();
-      }
+      if (e.key === ' ' && this.isRunning) player.shoot();
     });
   }
 

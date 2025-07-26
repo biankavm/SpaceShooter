@@ -4,3 +4,10 @@ export let TAMY = window.innerHeight;
 
 export const WIDTH_ENEMY = 100;
 export const PROB_ENEMY_SHIP = 0.007; // 0.7% de chance de criar um inimigo a cada frame
+
+export function updateScreenDimensions() {
+  TAMX = window.innerWidth;
+  TAMY = window.innerHeight;
+}
+
+window.addEventListener('resize', updateScreenDimensions);

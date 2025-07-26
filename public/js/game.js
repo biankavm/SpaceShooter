@@ -92,9 +92,14 @@ class Game {
 
   destroyEnemyWhenOutOfScreen() {
     setInterval(() => {
-      enemys.enemysList = enemys.enemysList.filter(
-        (e) => e.element.offsetTop < TAMY
-      );
+      enemys.enemysList = enemys.enemysList.filter((e) => {
+        if (e.element.offsetTop >= TAMY) {
+          // se o inimigo saiu da tela, destrói ele completamente
+          e.destroy();
+          return false; // remove da lista
+        }
+        return true; // mantém na lista
+      });
     }, 1000);
   }
 

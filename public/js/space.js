@@ -7,6 +7,11 @@ class Space {
     this.element.style.height = `${TAMY}px`;
     this.element.style.backgroundPositionY = '0px';
     this.isMove = false;
+
+    window.addEventListener('resize', () => {
+      this.element.style.width = `${TAMX}px`;
+      this.element.style.height = `${TAMY}px`;
+    });
   }
 
   move() {

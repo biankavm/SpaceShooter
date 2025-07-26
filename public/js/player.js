@@ -34,7 +34,27 @@ class Player {
       left: false,
       right: false,
     };
+
+    // Ajusta a posição do jogador quando a tela for redimensionada
+    window.addEventListener('resize', () => {
+      this.adjustPositionOnResize();
+    });
   }
+
+  adjustPositionOnResize() {
+    const playerWidth = this.element.offsetWidth;
+    this.rightLimit = TAMX - playerWidth;
+
+    const currentLeft = parseInt(this.element.style.left);
+
+    // Se o jogador estiver fora dos limites após o redimensionamento, reposiciona
+    if (currentLeft < 0) {
+      this.element.style.left = '0px';
+    } else if (currentLeft > this.rightLimit) {
+      this.element.style.left = `${this.rightLimit}px`;
+    }
+  }
+
   changeDirection(giro) {
     if (!this.isMove) return;
 

@@ -3,6 +3,14 @@ export class Audio {
     this.startGameMusic = null;
     this.gameOverMusic = null;
     this.shootMusic = null;
+    this.hitEffect = null;
+  }
+
+  getHitEffect() {
+    if (!this.hitEffect) {
+      this.hitEffect = document.getElementById('hit');
+    }
+    return this.hitEffect;
   }
 
   getShootMusic() {
@@ -37,6 +45,15 @@ export class Audio {
     const music = this.getGameOverMusic();
     if (music) {
       music.currentTime = 0;
+    }
+  }
+
+  playHitEffect() {
+    const effect = this.getHitEffect();
+    effect.volume = 1;
+    effect.currentTime = 0;
+    if (effect) {
+      effect.play();
     }
   }
 

@@ -151,6 +151,7 @@ class Player {
       if (hit) {
         this.isMove = false;
         this.isDamaged = true;
+        audio.playHitEffect();
         // se tomou dano, destruir todos os lasers disparados (e remover do DOM)
         this.lasers.forEach((laser) => {
           laser._destroyed = true;

@@ -33,10 +33,40 @@ class Game {
     });
   }
 
+  createOverlay(title, btnText, callback) {
+    const overlay = document.createElement('div');
+    overlay.id = 'gameOverScreen';
+
+    const msg = document.createElement('h1');
+    msg.textContent = title;
+    msg.classList.add('game-over-message');
+
+    const button = document.createElement('button');
+    button.textContent = btnText;
+    button.classList.add('restart-button');
+    button.addEventListener('click', callback);
+
+    overlay.appendChild(msg);
+    overlay.appendChild(button);
+    const spaceEl = document.getElementById('space');
+    spaceEl.appendChild(overlay);
+  }
+
   stop() {
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'p') {
+      if (e.key === 'p' && this.isRunning) {
+        // hora de pausar o jogo
         this.#changeGameState();
+
+        // criar o overlay
+        this.createOverlay('Jogo pausado', 'VOLTAR', () => {
+          // clicou em voltar ? então precisamos remover o overlay
+          const overlay = document.getElementById('gameOverScreen');
+          if (overlay) overlay.remove();
+
+          // aqui voltamos ao jogo
+          this.#changeGameState();
+        });
       }
     });
   }
@@ -60,24 +90,9 @@ class Game {
       if (gameOverMusic) audio.playGameOverMusic();
     }
 
-    const overlay = document.createElement('div');
-    overlay.id = 'gameOverScreen';
-
-    const msg = document.createElement('h1');
-    msg.textContent = 'GAME OVER';
-    msg.classList.add('game-over-message');
-
-    const btn = document.createElement('button');
-    btn.textContent = 'JOGAR NOVAMENTE';
-    btn.classList.add('restart-button');
-    btn.addEventListener('click', () => {
+    this.createOverlay('GAME OVER', 'JOGAR NOVAMENTE', () => {
       window.location.reload();
     });
-
-    overlay.appendChild(msg);
-    overlay.appendChild(btn);
-    const spaceEl = document.getElementById('space');
-    spaceEl.appendChild(overlay);
   }
 
   movePlayer() {

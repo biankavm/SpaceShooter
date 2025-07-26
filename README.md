@@ -1,6 +1,6 @@
 # 🎮 Space Shooter
 
-Olá! Este é um projeto que desenvolvi durante a graduação para a disciplina de Programação para Web.
+Olá! Esse é um projeto que desenvolvi durante a graduação para a disciplina de Programação para Web.
 
 O trabalho consiste na elaboração de um sistema com o Jogo Space Shooter, permitindo cadastro de usuários, cursos, e amostragem do ranking com os melhores colocados no Jogo!
 
@@ -54,7 +54,7 @@ PORT=7799
 NODE_ENV=development # também pode ser production
 SALT_ROUNDS=10
 SESSION_SECRET=sua_chave_secreta_aqui # pode ser uma sequência aleatória de letras e números
-DATABASE_ROOT_PASSWORD=senhasegura
+DATABASE_ROOT_PASSWORD=umasenhasegura
 ```
 
 4. **Inicie o jogo**
@@ -66,16 +66,6 @@ DATABASE_ROOT_PASSWORD=senhasegura
 5. **Acesse a aplicação**
    - **Jogo**: `http://localhost:PORT`
    - **phpMyAdmin**: `http://localhost:8081`
-
-### Comandos Disponíveis
-
-```bash
-# Comandos principais
-make help       # Mostrar todos os comandos
-make setup      # Configurar projeto completo
-make start      # Iniciar aplicação
-make dev        # Setup + start (desenvolvimento completo)
-```
 
 ## Tecnologias Utilizadas
 
@@ -176,10 +166,10 @@ E prepare-se para defender a galáxia dos invasores alienígenas!
 
 ## Agradecimentos
 
-- **Professores e colegas** da disciplina de Programação para Web
-- **Comunidade open source** pelos recursos e bibliotecas utilizadas
-- **Criadores das músicas** que tornam o jogo mais imersivo
-- **Todos que testaram e deram feedback** durante o desenvolvimento
+- Agradeço ao professor **David Fernandes** pelos ensinamentos na disciplina de Programação para Web
+- Agradeço a comunidade open source pelos recursos e bibliotecas utilizadas
+- Grata aos criadores das músicas que tornam o jogo mais imersivo
+- Por fim, agradeço a todos que testaram e deram feedback durante o desenvolvimento
 
 ---
 

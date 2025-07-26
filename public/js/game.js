@@ -52,12 +52,12 @@ class Game {
 
   stop() {
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'p' && this.isRunning) {
+      if (e.key.toLowerCase() === 'p' && this.isRunning) {
         // hora de pausar o jogo
         this.#changeGameState();
 
         // criar o overlay
-        this.createOverlay('Jogo pausado', 'VOLTAR', () => {
+        this.createOverlay('JOGO PAUSADO', 'VOLTAR', () => {
           // clicou em voltar ? então precisamos remover o overlay
           const overlay = document.getElementById('gameOverScreen');
           if (overlay) overlay.remove();
@@ -65,6 +65,10 @@ class Game {
           // aqui voltamos ao jogo
           this.#changeGameState();
         });
+      } else if (e.key.toLowerCase() === 'p' && !this.isRunning) {
+        const overlay = document.getElementById('gameOverScreen');
+        if (overlay) overlay.remove();
+        this.#changeGameState();
       }
     });
   }

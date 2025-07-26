@@ -3,7 +3,7 @@ import {
   createUser,
   getUserById,
   updateUser,
-  destroyUser
+  destroyUser,
 } from '../services/user';
 import { getMajorById, getMajors } from '../services/major';
 import { Request, Response } from 'express';
@@ -11,7 +11,7 @@ import { CreateUserDTO } from '../types/user';
 import {
   getGameSession,
   saveScoreUser,
-  updateScoreUser
+  updateScoreUser,
 } from '../services/gameSession';
 import registerSchema from '../validations/register.schema';
 import updateSchema from '../validations/update.schema';
@@ -39,7 +39,7 @@ const create = async (req: Request, res: Response) => {
       const body = req.body;
 
       const { error } = registerSchema.validate(body, {
-        abortEarly: false
+        abortEarly: false,
       });
 
       if (error) {
@@ -55,7 +55,7 @@ const create = async (req: Request, res: Response) => {
       if (confirmPassword !== userData.password) {
         res.render('user/create', {
           majors,
-          error: 'As senhas não conferem. Tente novamente!'
+          error: 'As senhas não conferem. Tente novamente!',
         });
       } else {
         await createUser(userData as CreateUserDTO);
@@ -95,7 +95,7 @@ const update = async (req: Request, res: Response) => {
   } else if (req.method === 'POST') {
     const body = req.body;
     const { error } = updateSchema.validate(body, {
-      abortEarly: false
+      abortEarly: false,
     });
 
     if (error) {
@@ -122,6 +122,7 @@ const update = async (req: Request, res: Response) => {
 };
 
 const destroy = async (req: Request, res: Response) => {
+  console.log('Estou no controller de destroy');
   const { id } = req.params;
   try {
     await destroyUser(id);

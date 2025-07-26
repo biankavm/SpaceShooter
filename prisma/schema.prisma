@@ -40,7 +40,7 @@ model GameSession {
   score     Int
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId], map: "game_sessions_user_id_fkey")
   @@map("game_sessions")

@@ -52,5 +52,13 @@ export const updateUserPassword = async (
 };
 
 export const destroyUser = async (id: string): Promise<void> => {
+  console.log(`Tentando deletar o usuário com id: ${id}`);
+
+  // // Primeiro deleta todas as sessões de jogo do usuário
+  // await prisma.gameSession.deleteMany({
+  //   where: { userId: id },
+  // });
+
+  // Depois deleta o usuário
   await prisma.user.delete({ where: { id } });
 };

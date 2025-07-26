@@ -50,7 +50,7 @@ app.use(
   session({
     genid: () => uuidv4(),
     secret: process.env.SECRET_SESSION!, // ! para garantir que a variável sempre vai existir
-    resave: false, // garante que toda vez que o usuario acessar o servidor, a contagem do maxAge é reiniciada
+    resave: true, // garante que toda vez que o usuario acessar o servidor, a contagem do maxAge é reiniciada
     saveUninitialized: true, // mesmo se o usuário nao esteja logado, ele vai ter uma sessão
     cookie: {
       maxAge: 24 * 60 * 60 * 1000, // 10 horas conectado no servidor

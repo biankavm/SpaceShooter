@@ -4,6 +4,7 @@ import { player } from './player.js';
 import { enemys } from './enemys.js';
 import { TAMY } from './config.js';
 import { stats } from './stats.js';
+import { audio } from './audio.js';
 
 class Game {
   constructor() {
@@ -15,6 +16,13 @@ class Game {
     space.isMove = this.isRunning;
     player.isMove = this.isRunning;
     enemys.isMove = this.isRunning;
+
+    const gameStartMusic = audio.getStartGameMusic();
+
+    if (gameStartMusic) {
+      if (this.isRunning) audio.playStartGameMusic();
+      else audio.stopStartGameMusic();
+    }
   }
 
   startGame() {
@@ -42,6 +50,15 @@ class Game {
     space.isMove = false;
     player.isMove = false;
     enemys.isMove = false;
+
+    // pausa a música ao dar game over
+    const gameStartMusic = audio.getStartGameMusic();
+    if (gameStartMusic) {
+      audio.stopStartGameMusic();
+      audio.resetStartGameMusic();
+      const gameOverMusic = audio.getGameOverMusic();
+      if (gameOverMusic) audio.playGameOverMusic();
+    }
 
     const overlay = document.createElement('div');
     overlay.id = 'gameOverScreen';

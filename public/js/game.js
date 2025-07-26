@@ -88,7 +88,7 @@ class Game {
       if (gameOverMusic) audio.playGameOverMusic();
     }
 
-    this.createOverlay('GAME OVER', 'JOGAR NOVAMENTE', () => {
+    this.createOverlay('FIM DE JOGO', 'JOGAR NOVAMENTE', () => {
       window.location.reload();
     });
   }

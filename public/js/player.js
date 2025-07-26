@@ -36,7 +36,16 @@ class Player {
       right: false,
     };
 
-    // Ajusta a posição do jogador quando a tela for redimensionada
+    this.currentKeyStates = new Set();
+
+    window.addEventListener('keydown', (e) => {
+      this.currentKeyStates.add(e.key);
+    });
+
+    window.addEventListener('keyup', (e) => {
+      this.currentKeyStates.delete(e.key);
+    });
+
     window.addEventListener('resize', () => {
       this.adjustPositionOnResize();
     });
@@ -48,10 +57,13 @@ class Player {
 
     const currentLeft = parseInt(this.element.style.left);
 
-    // Se o jogador estiver fora dos limites após o redimensionamento, reposiciona
     if (currentLeft < 0) this.element.style.left = '0px';
     else if (currentLeft > this.rightLimit)
       this.element.style.left = `${this.rightLimit}px`;
+  }
+
+  isKeyCurrentlyPressed(key) {
+    return this.currentKeyStates.has(key);
   }
 
   changeDirection(giro) {
@@ -155,8 +167,19 @@ class Player {
         stats.removeLife();
         setTimeout(() => {
           this.isMove = true;
-          this.element.src = directions[this.direction];
           this.isDamaged = false;
+
+          const isLeftPressed = this.isKeyCurrentlyPressed('ArrowLeft');
+          const isRightPressed = this.isKeyCurrentlyPressed('ArrowRight');
+
+          this.keys.left = isLeftPressed;
+          this.keys.right = isRightPressed;
+
+          if (isLeftPressed && !isRightPressed) this.direction = 0;
+          else if (isRightPressed && !isLeftPressed) this.direction = 2;
+          else this.direction = 1;
+
+          this.element.src = directions[this.direction];
         }, 5000);
       }
     });

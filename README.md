@@ -22,6 +22,39 @@ O trabalho consiste na elaboração de um sistema com o Jogo Space Shooter, perm
 - **Sobreviva o máximo possível** para conseguir a maior pontuação
 - **Suba no ranking** e compare sua pontuação com outros jogadores!
 
+### Regras do Jogo
+
+#### **Sistema de Vidas**
+
+- **3 vidas** no início de cada partida
+- **Perde 1 vida** ao colidir com qualquer inimigo
+- **Game Over** quando todas as vidas acabam
+
+#### **Sistema de Pontuação**
+
+- **Meteorito Pequeno**: 100 pontos (mais valioso!)
+- **Nave Inimiga**: 50 pontos
+- **Disco voador**: 20 pontos
+- **Meteorito Grande**: 10 pontos
+
+#### **Dificuldade Progressiva**
+
+- **Velocidade dos inimigos aumenta** a cada 60 segundos
+- **Multiplicador de velocidade**: +5% a cada minuto
+- **Inimigos ficam mais rápidos** conforme o tempo passa
+
+#### **Mecânicas Especiais**
+
+- **Invencibilidade temporária**: 5 segundos após tomar dano
+- **Nave muda sua aparência** quando danificada
+- **Lasers são destruídos** ao tomar dano
+- **Pausa disponível** a qualquer momento (tecla P)
+
+#### **Sistema de Ranking**
+
+- **Maior pontuação salva automaticamente** ao final da partida
+- **Ranking dos 10 melhores** jogadores
+
 ## Como Executar
 
 ### Pré-requisitos
@@ -124,6 +157,16 @@ _Página Inicial para Usuários Deslogados - Jogo fica inacessível_
 
 ![Lista de Cursos](screenshots/pages/404.png)
 _Página não existente (404)_
+
+## 🎥 Vídeo de Demonstração
+
+Confira o jogo em ação! Os vídeos abaixo mostram a jogabilidade e as funcionalidades do sistema:
+
+<video src="videos/gameplay.mp4" width="100%" controls></video>
+_Jogabilidade_
+
+<video src="videos/navigation.mp4" width="100%" controls></video>
+_Funcionalidades do Sistema_
 
 ## Músicas e Créditos
 

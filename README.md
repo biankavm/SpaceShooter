@@ -97,8 +97,7 @@ DATABASE_ROOT_PASSWORD=umasenhasegura
    ```
 
 5. **Acesse a aplicação**
-   - **Jogo**: `http://localhost:PORT`
-   - **phpMyAdmin**: `http://localhost:8081`
+   `http://localhost:PORT`
 
 ## Tecnologias Utilizadas
 
@@ -162,11 +161,9 @@ _Página não existente (404)_
 
 Confira o jogo em ação! Os vídeos abaixo mostram a jogabilidade e as funcionalidades do sistema:
 
-<video src="videos/gameplay.mp4" width="100%" controls></video>
-_Jogabilidade_
+[![Assistir vídeo de Jogabilidade](videos/game-thumbnail.png)](https://drive.google.com/file/d/1zaB3QcmFWuKu3K6DxrXHkIxLH19QXNE-/view?usp=sharing)
 
-<video src="videos/navigation.mp4" width="100%" controls></video>
-_Funcionalidades do Sistema_
+[![Assistir vídeo das Funcionalidades](videos/navigation-thumbnail.png)](https://drive.google.com/file/d/1fzD_76yP7k2vYee2tKhXgbUPrjZ_1O7g/view?usp=sharing)
 
 ## Músicas e Créditos
 
